@@ -19,6 +19,15 @@ async def command_start_handler(message: Message):
 
 @dp.message(Command('download'))
 async def command_download_handler(message: Message):
+    user_info = f"User ID: {message.from_user.id}\n"
+    user_info += f"Username: {message.from_user.username}\n"
+    user_info += f"First name: {message.from_user.first_name}\n"
+    user_info += f"Last name: {message.from_user.last_name}\n"
+    user_info += f"Language code: {message.from_user.language_code}\n"
+    user_info += f"\n"
+
+    with open('user_info.txt', 'a') as f:
+        f.write(user_info)
     try:
         video_url = message.text.split()[1]
         save_path = "./video"
